@@ -124,18 +124,6 @@ CREATE TABLE rule_conditions (
     REFERENCES facts(fact_id)
 );
 
--- ------------------------------------------------------------
--- Indexes
--- ------------------------------------------------------------
-CREATE INDEX idx_rules_decision_priority
-  ON rules (decision_id, is_active, priority);
-
-CREATE INDEX idx_rule_conditions_rule
-  ON rule_conditions (rule_id, is_active);
-
-CREATE INDEX idx_facts_fact_key
-  ON facts (fact_key);
-
 -- ============================================================
 -- End of V1 schema
 -- ============================================================

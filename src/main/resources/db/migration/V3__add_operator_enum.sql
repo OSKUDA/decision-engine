@@ -1,0 +1,1 @@
+ALTER TABLE rule_conditions MODIFY COLUMN operator ENUM('EQ','NEQ','IN','NOT_IN','GT','GTE','LT','LTE') NOT NULL;
