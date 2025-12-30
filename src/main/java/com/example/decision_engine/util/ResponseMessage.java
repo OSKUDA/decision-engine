@@ -28,5 +28,7 @@ public class ResponseMessage {
 
         public static final String SUCCESS_CREATED_DECISION = "success! decision created";
 
+        public static final String SUCCESS_FETCHED_DECISIONS = "success! decision fetched";
+
     }
 }

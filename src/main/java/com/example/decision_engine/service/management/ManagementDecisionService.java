@@ -7,4 +7,5 @@ public interface ManagementDecisionService {
 
     ResponseModel createDecision(CreateDecisionRequest request);
 
+    ResponseModel fetchPaginatedDecisions(int page, int size);
 }
