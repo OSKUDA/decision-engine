@@ -22,7 +22,7 @@ public class Decision extends Audit {
     private Long id;
 
     @ToString.Include
-    @Column(name = "decision_key", unique = true)
+    @Column(name = "decision_key", length = 100, unique = true)
     private String decisionKey;
 
     @ToString.Include
