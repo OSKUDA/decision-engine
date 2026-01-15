@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/internal/decisions")
-public class DecisionConfigController {
+public class DecisionManagementController {
 
     private final ManagementDecisionService managementDecisionService;
 
-    public DecisionConfigController(ManagementDecisionService managementDecisionService) {
+    public DecisionManagementController(ManagementDecisionService managementDecisionService) {
         this.managementDecisionService = managementDecisionService;
     }
 
