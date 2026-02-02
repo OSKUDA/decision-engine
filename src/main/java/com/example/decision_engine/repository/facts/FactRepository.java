@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FactRepository extends JpaRepository<Fact, Long> {
+
+    boolean existsByFactKey(String factKey);
+
 }

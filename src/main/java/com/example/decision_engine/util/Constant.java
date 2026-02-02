@@ -11,6 +11,14 @@ public class Constant {
             public static String DECISION_KEY = "DecisionKey";
 
         }
+
+        public static class Fact {
+
+            public static String NAME = "Fact";
+
+            public static String FACT_KEY = "FactKey";
+
+        }
     }
 
 }

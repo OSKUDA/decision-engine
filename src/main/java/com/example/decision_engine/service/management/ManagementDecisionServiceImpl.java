@@ -1,13 +1,18 @@
 package com.example.decision_engine.service.management;
 
 import com.example.decision_engine.entity.decisions.Decision;
+import com.example.decision_engine.entity.facts.Fact;
 import com.example.decision_engine.model.decisions.DecisionModel;
+import com.example.decision_engine.model.fact.FactModel;
 import com.example.decision_engine.model.request.management.CreateDecisionRequest;
+import com.example.decision_engine.model.request.management.CreateFactRequest;
 import com.example.decision_engine.model.response.api.ResponseModel;
 import com.example.decision_engine.model.response.api.factory.ResponseModelFactory;
 import com.example.decision_engine.model.response.decisions.DecisionResponse;
+import com.example.decision_engine.model.response.fact.FactResponse;
 import com.example.decision_engine.model.response.management.PagedDecisionResponse;
 import com.example.decision_engine.service.core.decision.DecisionService;
+import com.example.decision_engine.service.core.fact.FactService;
 import com.example.decision_engine.util.ResponseMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -22,12 +27,15 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 @Service
 @Transactional
-public class ManagementDecisionServiceImpl implements ManagementDecisionService {
+public class ManagementDecisionServiceImpl implements ManagementService {
 
     private final DecisionService decisionService;
 
-    public ManagementDecisionServiceImpl(DecisionService decisionService) {
+    private final FactService factService;
+
+    public ManagementDecisionServiceImpl(DecisionService decisionService, FactService factService) {
         this.decisionService = decisionService;
+        this.factService = factService;
     }
 
     @Override
@@ -83,6 +91,25 @@ public class ManagementDecisionServiceImpl implements ManagementDecisionService 
                         .hasPrevious(pageResult.hasPrevious())
                         .build(),
                 HttpStatus.OK
+        );
+    }
+
+    @Override
+    public ResponseModel createFact(CreateFactRequest createFactRequest) {
+        Fact fact = factService.createFact(FactModel.builder()
+                .factKey(createFactRequest.getFactKey())
+                .name(createFactRequest.getName())
+                .dataType(createFactRequest.getType())
+                .isActive(Boolean.TRUE)
+                .build());
+
+        // build response
+        return ResponseModelFactory.success(
+                "",
+                FactResponse.builder()
+                        .factKey(fact.getFactKey())
+                        .build(),
+                HttpStatus.CREATED
         );
     }
 }
